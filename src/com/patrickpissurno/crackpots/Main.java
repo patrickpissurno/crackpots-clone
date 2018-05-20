@@ -1,18 +1,15 @@
 package com.patrickpissurno.crackpots;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Main {
     public static void main(String args[]){
-        System.out.println("Works");
-        javax.swing.SwingUtilities.invokeLater(() -> createAndShowGUI());
+        javax.swing.SwingUtilities.invokeLater(() -> init());
     }
 
-    private static int posX = 0;
-    private static int posY = 0;
-
-    private static void createAndShowGUI() {
-        //Create and set up the window.
+    private static void init(){
         JFrame frame = new JFrame("Crackpots");
         frame.setMinimumSize(new Dimension(800, 600));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,23 +17,32 @@ public class Main {
         JPanel panel = (JPanel) frame.getContentPane();
         panel.setLayout(null);
 
-        JLabel label = new JLabel(new ImageIcon("sprite.png"));
-
-        label.setLocation(posX, posY);
-
-        Timer timer = new Timer( 100, a -> {
-            posX += 2;
-            posY += 2;
-            label.setLocation(posX, posY);
-        });
-        timer.start();
-
-        label.setBounds(100, 100, 32, 32);
-
-        panel.add(label);
-
-        //Display the window.
+        //Display the window
         frame.pack();
         frame.setVisible(true);
+
+        final Game game = new Game(panel);
+
+        frame.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                super.keyTyped(e);
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                game.onKeyPressed(e);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                super.keyReleased(e);
+                game.onKeyReleased(e);
+            }
+        });
+
+        //Set game loop
+        new Timer( 1000/60, a -> game.onUpdate()).start();
     }
 }
