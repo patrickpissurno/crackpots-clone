@@ -8,17 +8,25 @@ import java.util.List;
 public class Game {
     private JPanel panel;
     private List<IGameObject> gameObjects;
+    private Round round;
 
     public Game(JPanel panel){
         this.panel = panel;
         gameObjects = new ArrayList<>();
+        round = new Round();
 
         instantiate(new Player());
+        round.onCreate(this);
+
+        final JLabel bg = new JLabel(new ImageIcon("bg.png"));
+        bg.setBounds(0, 0, 640, 420);
+        panel.add(bg);
     }
 
     public void onUpdate(){
         for(IGameObject obj : gameObjects)
             obj.onUpdate(this);
+        round.onUpdate(this);
     }
 
     public void onKeyPressed(KeyEvent e){

@@ -3,27 +3,32 @@ package com.patrickpissurno.crackpots;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 
-public class Player implements IGameObject{
+public abstract class Spider implements IGameObject{
     private JLabel label;
     private int x;
     private int y;
-    private int hspeed;
+    protected int hspeed;
+    protected int vspeed;
 
     @Override
     public JLabel onCreate(Game game) {
-        label = new JLabel(new ImageIcon("player.png"));
+        label = new JLabel(new ImageIcon(getSpritePath()));
         x = 0;
-        y = 44;
+        y = 420 - 32;
         hspeed = 0;
+        vspeed = 0;
 
-        label.setBounds(x, y, 28, 40);
+        label.setBounds(x, y, 32, 32);
         label.setLocation(x, y);
         return label;
     }
 
+    protected abstract String getSpritePath();
+
     @Override
     public void onUpdate(Game game) {
         x += hspeed;
+        y += vspeed;
         label.setLocation(x, y);
     }
 
@@ -34,15 +39,11 @@ public class Player implements IGameObject{
 
     @Override
     public void onKeyPressed(Game game, KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_LEFT)
-            hspeed = -4;
-        else if(e.getKeyCode() == KeyEvent.VK_RIGHT)
-            hspeed = 4;
+
     }
 
     @Override
     public void onKeyReleased(Game game, KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT)
-            hspeed = 0;
+
     }
 }

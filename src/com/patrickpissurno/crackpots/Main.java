@@ -11,7 +11,7 @@ public class Main {
 
     private static void init(){
         JFrame frame = new JFrame("Crackpots");
-        frame.setMinimumSize(new Dimension(800, 600));
+        frame.setMinimumSize(new Dimension(655, 420 + 39));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = (JPanel) frame.getContentPane();
