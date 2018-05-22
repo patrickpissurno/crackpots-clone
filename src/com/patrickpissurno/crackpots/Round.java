@@ -15,8 +15,11 @@ public class Round {
         spawnTimer -= 1;
         if(spawnTimer <= 0 && remainingEnemies > 0)
         {
-            //game.instantiate(new BlackSpider());
-            spawnTimer = 60;
+            final BlackSpider spider = new BlackSpider();
+            spider.setTargetWindow(Utils.randomRange(0, 5));
+
+            game.instantiate(spider);
+            spawnTimer = 120;
             remainingEnemies -= 1;
         }
     }

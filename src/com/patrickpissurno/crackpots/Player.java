@@ -12,7 +12,7 @@ public class Player implements IGameObject{
     @Override
     public JLabel onCreate(Game game) {
         label = new JLabel(new ImageIcon("player.png"));
-        x = 0;
+        x = 320 - 14;
         y = 44;
         hspeed = 0;
 

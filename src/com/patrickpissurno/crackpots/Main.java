@@ -11,10 +11,12 @@ public class Main {
 
     private static void init(){
         JFrame frame = new JFrame("Crackpots");
-        frame.setMinimumSize(new Dimension(655, 420 + 39));
+        frame.setMinimumSize(new Dimension(640, 420));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel panel = (JPanel) frame.getContentPane();
+        JLayeredPane panel = new JLayeredPane();
+        frame.setContentPane(panel);
+//        JPanel panel = (JPanel) frame.getContentPane();
         panel.setLayout(null);
 
         //Display the window

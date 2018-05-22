@@ -1,46 +1,63 @@
 package com.patrickpissurno.crackpots;
 
+import javafx.util.Pair;
+
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Game {
-    private JPanel panel;
-    private List<IGameObject> gameObjects;
+    private JLayeredPane panel;
+    private ArrayList<Pair<IGameObject, JLabel>> gameObjects;
     private Round round;
 
-    public Game(JPanel panel){
+    public Game(JLayeredPane panel){
         this.panel = panel;
         gameObjects = new ArrayList<>();
         round = new Round();
 
-        instantiate(new Player());
-        round.onCreate(this);
-
         final JLabel bg = new JLabel(new ImageIcon("bg.png"));
         bg.setBounds(0, 0, 640, 420);
-        panel.add(bg);
+        panel.add(bg, new Integer(1));
+
+        instantiate(new Player());
+        round.onCreate(this);
     }
 
     public void onUpdate(){
-        for(IGameObject obj : gameObjects)
-            obj.onUpdate(this);
+        for(Pair<IGameObject, JLabel> obj : gameObjects)
+            obj.getKey().onUpdate(this);
         round.onUpdate(this);
     }
 
     public void onKeyPressed(KeyEvent e){
-        for(IGameObject obj : gameObjects)
-            obj.onKeyPressed(this, e);
+        for(Pair<IGameObject, JLabel> obj : gameObjects)
+            obj.getKey().onKeyPressed(this, e);
     }
 
     public void onKeyReleased(KeyEvent e){
-        for(IGameObject obj : gameObjects)
-            obj.onKeyReleased(this, e);
+        for(Pair<IGameObject, JLabel> obj : gameObjects)
+            obj.getKey().onKeyReleased(this, e);
     }
 
     public void instantiate(IGameObject gameObject){
-        gameObjects.add(gameObject);
-        panel.add(gameObject.onCreate(this));
+        final JLabel sprite = gameObject.onCreate(this);
+
+        gameObjects.add(new Pair<>(gameObject, sprite));
+        panel.add(sprite, new Integer(panel.getComponentCount() + 1));
+    }
+
+    public void destroy(IGameObject gameObject){
+        final ArrayList<Pair<IGameObject, JLabel>> arr = new ArrayList<>(gameObjects);
+        for(Pair<IGameObject, JLabel> obj : gameObjects)
+        {
+            if(obj.getKey().equals(gameObject)){
+                arr.remove(obj);
+                obj.getValue().setVisible(false);
+                panel.remove(panel.getIndexOf(obj.getValue()));
+                break;
+            }
+        }
+        gameObjects = arr;
     }
 }
