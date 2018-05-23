@@ -24,6 +24,12 @@ public class BlackSpider extends Spider {
     }
 
     @Override
+    public void onDestroy(Game game){
+        super.onDestroy(game);
+        game.addScore(10);
+    }
+
+    @Override
     public void onUpdate(Game game){
         int targetX = WINDOW_BASE_POSITION + targetWindow * WINDOW_BASE_OFFSET;
 

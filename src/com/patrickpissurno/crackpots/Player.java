@@ -17,7 +17,7 @@ public class Player implements IGameObject, ICollider{
     public JLabel onCreate(Game game) {
         label = new JLabel(new ImageIcon("player.png"));
         x = 320 - width/2;
-        y = 44;
+        y = 40;
         hspeed = 0;
 
         label.setBounds(x, y, width, height);
