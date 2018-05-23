@@ -10,6 +10,7 @@ public class Game {
     private JLayeredPane panel;
     private ArrayList<Pair<IGameObject, JLabel>> gameObjects;
     private Round round;
+    private Player player;
 
     public Game(JLayeredPane panel){
         this.panel = panel;
@@ -20,7 +21,8 @@ public class Game {
         bg.setBounds(0, 0, 640, 420);
         panel.add(bg, new Integer(1));
 
-        instantiate(new Player());
+        player = new Player();
+        instantiate(player);
         round.onCreate(this);
     }
 
@@ -40,6 +42,10 @@ public class Game {
             obj.getKey().onKeyReleased(this, e);
     }
 
+    public ICollider getPlayerCollider(){
+        return player;
+    }
+
     public void instantiate(IGameObject gameObject){
         final JLabel sprite = gameObject.onCreate(this);
 
@@ -52,6 +58,7 @@ public class Game {
         for(Pair<IGameObject, JLabel> obj : gameObjects)
         {
             if(obj.getKey().equals(gameObject)){
+                obj.getKey().onDestroy(this);
                 arr.remove(obj);
                 obj.getValue().setVisible(false);
                 panel.remove(panel.getIndexOf(obj.getValue()));

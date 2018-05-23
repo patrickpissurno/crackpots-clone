@@ -16,11 +16,11 @@ public class Main {
 
         JLayeredPane panel = new JLayeredPane();
         frame.setContentPane(panel);
-//        JPanel panel = (JPanel) frame.getContentPane();
         panel.setLayout(null);
 
         //Display the window
         frame.pack();
+        frame.setResizable(false);
         frame.setVisible(true);
 
         final Game game = new Game(panel);

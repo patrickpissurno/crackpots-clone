@@ -9,4 +9,5 @@ public interface IGameObject {
     void onDestroy(Game game);
     void onKeyPressed(Game game, KeyEvent e);
     void onKeyReleased(Game game, KeyEvent e);
+    boolean isDestroyed();
 }

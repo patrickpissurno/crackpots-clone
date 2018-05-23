@@ -14,4 +14,7 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 out/
+out/*
+out/*/*
+out
 .DS_Store

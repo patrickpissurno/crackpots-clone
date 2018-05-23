@@ -1,9 +1,10 @@
 package com.patrickpissurno.crackpots;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public abstract class Spider implements IGameObject{
+public abstract class Spider implements IGameObject, ICollider{
     protected static final int WINDOW_BASE_POSITION = 128;
     protected static final int WINDOW_BASE_OFFSET = 64;
 
@@ -16,6 +17,10 @@ public abstract class Spider implements IGameObject{
     protected int hspeed;
     protected int vspeed;
     protected int targetWindow;
+    protected boolean destroyed;
+
+    private final int width = 32;
+    private final int height = 32;
 
     private ImageIcon[] wallSprites;
     private ImageIcon[] groundSprites;
@@ -55,7 +60,9 @@ public abstract class Spider implements IGameObject{
         animationClock = 5;
         currentFrame = 0;
 
-        label.setBounds(x, y, 32, 32);
+        destroyed = false;
+
+        label.setBounds(x, y, width, height);
         label.setLocation(x, y);
         return label;
     }
@@ -84,7 +91,7 @@ public abstract class Spider implements IGameObject{
 
     @Override
     public void onDestroy(Game game) {
-
+        destroyed = true;
     }
 
     @Override
@@ -106,5 +113,23 @@ public abstract class Spider implements IGameObject{
             sprites = wallSprites;
         else if(type == SPRITES_GROUND)
             sprites = groundSprites;
+    }
+
+    @Override
+    public boolean isColliding(Rectangle rectangle) {
+        return x < rectangle.x + rectangle.width &&
+                x + width > rectangle.x &&
+                y < rectangle.y + rectangle.height &&
+                height + y > rectangle.y;
+    }
+
+    @Override
+    public Rectangle getBoundingBox() {
+        return new Rectangle(x, y, width, height);
+    }
+
+    @Override
+    public boolean isDestroyed() {
+        return destroyed;
     }
 }
