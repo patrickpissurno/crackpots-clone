@@ -13,7 +13,7 @@ public class Round {
 
     public void onCreate(Game game){
         lives = 6;
-        remainingEnemies = 6;
+        remainingEnemies = 12;
         spawnTimer = 60;
 
         potes = new ArrayList<>();
