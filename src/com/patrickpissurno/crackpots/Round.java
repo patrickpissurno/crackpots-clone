@@ -1,20 +1,32 @@
 package com.patrickpissurno.crackpots;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class Round {
-    private int lives;
     private int remainingEnemies;
     private int spawnTimer;
 
     private List<Pote> potes;
     private List<Spider> spiders;
 
+    private Stack<JLabel> lives;
+
     public void onCreate(Game game){
-        lives = 6;
         remainingEnemies = 12;
         spawnTimer = 60;
+
+        lives = new Stack<>();
+        final ImageIcon lifeIcon = new ImageIcon("life_black.png");
+        for(int i = 0; i<6; i++){
+            final JLabel life = new JLabel(lifeIcon);
+            life.setBounds(0, 0, 24, 14);
+            life.setLocation(220 + i * 32, 352);
+            game.addUI(life);
+            lives.push(life);
+        }
 
         potes = new ArrayList<>();
         spiders = new ArrayList<>();
@@ -35,6 +47,7 @@ public class Round {
         {
             final BlackSpider spider = new BlackSpider();
             spider.setTargetWindow(Utils.randomRange(0, 5));
+            spider.setAttackedListener(() -> removeLife(game));
 
             game.instantiate(spider);
             spiders.add(spider);
@@ -64,6 +77,14 @@ public class Round {
                 if(!s.isDestroyed())
                     arr.add(s);
             spiders = arr;
+        }
+    }
+
+    private void removeLife(Game game){
+        if(!lives.empty()) {
+            final JLabel life = lives.pop();
+            life.setVisible(false);
+            game.removeUI(life);
         }
     }
 }

@@ -37,6 +37,9 @@ public abstract class Spider implements IGameObject, ICollider{
         return this.y;
     }
 
+    private Runnable attackedListener;
+    protected boolean attacked;
+
     @Override
     public JLabel onCreate(Game game) {
         label = new JLabel();
@@ -61,6 +64,7 @@ public abstract class Spider implements IGameObject, ICollider{
         currentFrame = 0;
 
         destroyed = false;
+        attacked = false;
 
         label.setBounds(x, y, width, height);
         label.setLocation(x, y);
@@ -73,7 +77,10 @@ public abstract class Spider implements IGameObject, ICollider{
     public void onUpdate(Game game) {
 
         if(y < 130) {
+            attacked = true;
             game.destroy(this);
+            if(attackedListener != null)
+                attackedListener.run();
             return;
         }
 
@@ -131,5 +138,9 @@ public abstract class Spider implements IGameObject, ICollider{
     @Override
     public boolean isDestroyed() {
         return destroyed;
+    }
+
+    public void setAttackedListener(Runnable listener){
+        attackedListener = listener;
     }
 }

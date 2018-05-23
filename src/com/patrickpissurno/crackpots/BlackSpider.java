@@ -26,7 +26,8 @@ public class BlackSpider extends Spider {
     @Override
     public void onDestroy(Game game){
         super.onDestroy(game);
-        game.addScore(10);
+        if(!attacked)
+            game.addScore(10);
     }
 
     @Override

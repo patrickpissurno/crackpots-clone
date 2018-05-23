@@ -9,6 +9,8 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 
 public class Game {
+    public static final int LAYER_UI = 10000;
+
     private JLayeredPane panel;
     private ArrayList<Pair<IGameObject, JLabel>> gameObjects;
     private Round round;
@@ -43,7 +45,7 @@ public class Game {
         }
 
         scoreText.setHorizontalAlignment(SwingUtilities.RIGHT);
-        panel.add(scoreText, new Integer(10));
+        panel.add(scoreText, new Integer(LAYER_UI));
 
         player = new Player();
         instantiate(player);
@@ -95,5 +97,13 @@ public class Game {
     public void addScore(int score){
         this.score += score;
         scoreText.setText(this.score + "");
+    }
+
+    public void addUI(JLabel elem){
+        panel.add(elem, new Integer(LAYER_UI));
+    }
+
+    public void removeUI(JLabel elem){
+        panel.remove(panel.getIndexOf(elem));
     }
 }
