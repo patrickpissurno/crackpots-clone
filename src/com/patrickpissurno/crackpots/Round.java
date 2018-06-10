@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class Round {
+public abstract class Round {
     private boolean created = false;
 
     private int remainingEnemies;
@@ -23,7 +23,7 @@ public class Round {
         animateRoundEndTimer = 60;
 
         lives = new Stack<>();
-        final ImageIcon lifeIcon = new ImageIcon("life_black.png");
+        final ImageIcon lifeIcon = getLifeIcon();
         for(int i = 0; i<6; i++){
             final JLabel life = new JLabel(lifeIcon);
             life.setBounds(0, 0, 24, 14);
@@ -54,7 +54,7 @@ public class Round {
         spawnTimer -= 1;
         if(spawnTimer <= 0 && remainingEnemies > 0)
         {
-            final BlackSpider spider = new BlackSpider();
+            final Spider spider = getNewSpider();
             spider.setTargetWindow(Utils.randomRange(0, 5));
             spider.setAttackedListener(() -> removeLife(game));
 
@@ -78,7 +78,7 @@ public class Round {
             game.addScore(100);
         }
         if(lives.empty())
-            game.nextRound(new Round());
+            game.nextRound(getNextRound());
     }
 
     public void onDestroy(Game game){
@@ -122,4 +122,8 @@ public class Round {
     public boolean isCreated(){
         return created;
     }
+
+    protected abstract ImageIcon getLifeIcon();
+    protected abstract Round getNextRound();
+    protected abstract Spider getNewSpider();
 }

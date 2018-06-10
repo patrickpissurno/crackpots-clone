@@ -24,7 +24,7 @@ public class Game {
 
         this.panel = panel;
         gameObjects = new ArrayList<>();
-        nextRound(new Round());
+        nextRound(new BlackRound());
 
         final JLabel bg = new JLabel(new ImageIcon("bg.png"));
         bg.setBounds(0, 0, 640, 420);
