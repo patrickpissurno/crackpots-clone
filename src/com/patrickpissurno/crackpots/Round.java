@@ -6,8 +6,11 @@ import java.util.List;
 import java.util.Stack;
 
 public class Round {
+    private boolean created = false;
+
     private int remainingEnemies;
     private int spawnTimer;
+    private int animateRoundEndTimer;
 
     private List<Pote> potes;
     private List<Spider> spiders;
@@ -17,6 +20,7 @@ public class Round {
     public void onCreate(Game game){
         remainingEnemies = 12;
         spawnTimer = 60;
+        animateRoundEndTimer = 60;
 
         lives = new Stack<>();
         final ImageIcon lifeIcon = new ImageIcon("life_black.png");
@@ -37,9 +41,14 @@ public class Round {
             game.instantiate(pote);
             potes.add(pote);
         }
+
+        created = true;
     }
 
     public void onUpdate(Game game){
+        if(!created)
+            return;
+
         checkCollisions(game);
 
         spawnTimer -= 1;
@@ -55,6 +64,28 @@ public class Round {
             spawnTimer = 120;
             remainingEnemies -= 1;
         }
+
+        if(remainingEnemies == 0 && spiders.isEmpty())
+            animateRoundEnd(game);
+    }
+
+    private void animateRoundEnd(Game game){
+        animateRoundEndTimer -= 1;
+        if(animateRoundEndTimer <= 0 && !lives.empty())
+        {
+            removeLife(game);
+            animateRoundEndTimer = 30;
+            game.addScore(100);
+        }
+        if(lives.empty())
+            game.nextRound(new Round());
+    }
+
+    public void onDestroy(Game game){
+        for(Pote p : potes)
+            game.destroy(p);
+        for(Spider s : spiders)
+            game.destroy(s);
     }
 
     private void checkCollisions(Game game){
@@ -86,5 +117,9 @@ public class Round {
             life.setVisible(false);
             game.removeUI(life);
         }
+    }
+
+    public boolean isCreated(){
+        return created;
     }
 }

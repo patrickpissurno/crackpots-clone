@@ -24,7 +24,7 @@ public class Game {
 
         this.panel = panel;
         gameObjects = new ArrayList<>();
-        round = new Round();
+        nextRound(new Round());
 
         final JLabel bg = new JLabel(new ImageIcon("bg.png"));
         bg.setBounds(0, 0, 640, 420);
@@ -53,9 +53,14 @@ public class Game {
     }
 
     public void onUpdate(){
+        if(round != null && !round.isCreated())
+            round.onCreate(this);
+
         for(Pair<IGameObject, JLabel> obj : gameObjects)
             obj.getKey().onUpdate(this);
-        round.onUpdate(this);
+
+        if(round != null)
+            round.onUpdate(this);
     }
 
     public void onKeyPressed(KeyEvent e){
@@ -105,5 +110,11 @@ public class Game {
 
     public void removeUI(JLabel elem){
         panel.remove(panel.getIndexOf(elem));
+    }
+
+    public void nextRound(Round round){
+        if(this.round != null)
+            this.round.onDestroy(this);
+        this.round = round;
     }
 }
