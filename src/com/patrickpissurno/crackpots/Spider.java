@@ -100,6 +100,7 @@ public abstract class Spider implements IGameObject, ICollider{
             game.destroy(this);
             if(attackedListener != null)
                 attackedListener.run();
+            SoundController.Play(SoundController.LOOSE_LIFE);
             return;
         }
 

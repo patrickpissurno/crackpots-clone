@@ -45,6 +45,7 @@ public class Pote implements IGameObject, ICollider{
         if(y > 300) {
             y = DEFAULT_Y;
             vspeed = 0;
+            SoundController.Play(SoundController.POT_CRACK);
         }
 
         label.setLocation(x, y);

@@ -23,6 +23,8 @@ public class Main {
         frame.setResizable(false);
         frame.setVisible(true);
 
+        SoundController.Load();
+
         final Game game = new Game(panel);
 
         frame.addKeyListener(new KeyAdapter() {

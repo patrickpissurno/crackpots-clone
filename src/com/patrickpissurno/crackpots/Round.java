@@ -75,8 +75,9 @@ public abstract class Round {
         if(animateRoundEndTimer <= 0 && !lives.empty())
         {
             removeLife(game);
-            animateRoundEndTimer = 30;
+            animateRoundEndTimer = 15;
             game.addScore(200);
+            SoundController.Play(SoundController.SCORE_BONUS);
         }
         if(lives.empty())
             game.nextRound(getNextRound());
@@ -95,8 +96,10 @@ public abstract class Round {
         for(Pote p : potes){
             for(Spider s : spiders)
             {
-                if(!s.isDestroyed() && p.isColliding(s.getBoundingBox()))
+                if(!s.isDestroyed() && p.isColliding(s.getBoundingBox())) {
                     s.destroyWithAnimation(game);
+                    SoundController.Play(SoundController.SPIDER_HIT);
+                }
 
                 if(s.isDestroyed() && !s.isFadeInProgress())
                     removed = true;
