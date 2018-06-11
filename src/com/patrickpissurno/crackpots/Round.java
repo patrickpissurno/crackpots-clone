@@ -96,9 +96,9 @@ public abstract class Round {
             for(Spider s : spiders)
             {
                 if(!s.isDestroyed() && p.isColliding(s.getBoundingBox()))
-                    game.destroy(s);
+                    s.destroyWithAnimation(game);
 
-                if(s.isDestroyed())
+                if(s.isDestroyed() && !s.isFadeInProgress())
                     removed = true;
             }
         }
