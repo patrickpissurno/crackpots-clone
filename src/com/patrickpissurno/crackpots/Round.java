@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Stack;
 
 public abstract class Round {
+    public static final int ROUND_TYPE_COUNT = 4;
     private boolean created = false;
 
     private int remainingEnemies;
@@ -75,7 +76,7 @@ public abstract class Round {
         {
             removeLife(game);
             animateRoundEndTimer = 30;
-            game.addScore(100);
+            game.addScore(200);
         }
         if(lives.empty())
             game.nextRound(getNextRound());

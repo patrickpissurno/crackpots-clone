@@ -17,10 +17,12 @@ public class Game {
     private Player player;
 
     private int score;
+    private int roundCount;
     private JLabel scoreText;
 
     public Game(JLayeredPane panel){
         score = 0;
+        roundCount = 0;
 
         this.panel = panel;
         gameObjects = new ArrayList<>();
@@ -104,6 +106,10 @@ public class Game {
         scoreText.setText(this.score + "");
     }
 
+    public void addSpiderScore(int score){
+        addScore(score * (1 + (int)Math.floor((roundCount + 0.001) / Round.ROUND_TYPE_COUNT)));
+    }
+
     public void addUI(JLabel elem){
         panel.add(elem, new Integer(LAYER_UI));
     }
@@ -113,8 +119,10 @@ public class Game {
     }
 
     public void nextRound(Round round){
-        if(this.round != null)
+        if(this.round != null) {
             this.round.onDestroy(this);
+            roundCount += 1;
+        }
         this.round = round;
     }
 }

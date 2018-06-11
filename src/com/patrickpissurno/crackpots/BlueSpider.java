@@ -2,16 +2,17 @@ package com.patrickpissurno.crackpots;
 
 import javax.swing.*;
 
-public class BlackSpider extends Spider {
+public class BlueSpider extends Spider {
     private static final int STATE_FIRST = 0;
     private static final int STATE_SECOND = 1;
     private static final int STATE_THIRD = 2;
 
     private int AIState;
+    private int AITimer;
 
     @Override
     protected String getSpritePrefix() {
-        return "spider_black";
+        return "spider_blue";
     }
 
     @Override
@@ -27,7 +28,7 @@ public class BlackSpider extends Spider {
     public void onDestroy(Game game){
         super.onDestroy(game);
         if(!attacked)
-            game.addSpiderScore(10);
+            game.addSpiderScore(20);
     }
 
     @Override
@@ -49,13 +50,21 @@ public class BlackSpider extends Spider {
                     hspeed = 3 * (int)Math.signum(targetX - x);
                 else{
                     x = targetX;
-                    hspeed = 0;
-                    AIState = STATE_THIRD;
                     setSprites(SPRITES_WALL);
+
+                    AIState = STATE_THIRD;
+                    hspeed = 1;
+                    AITimer = 15;
                 }
                 break;
             case STATE_THIRD:
                 vspeed = -1;
+
+                AITimer -= 1;
+                if(AITimer <= 0){
+                    hspeed *= -1;
+                    AITimer = 30;
+                }
                 break;
         }
 
