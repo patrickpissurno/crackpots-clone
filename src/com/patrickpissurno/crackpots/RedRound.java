@@ -2,19 +2,19 @@ package com.patrickpissurno.crackpots;
 
 import javax.swing.*;
 
-public class BlueRound extends Round{
+public class RedRound extends Round{
     @Override
     protected ImageIcon getLifeIcon() {
-        return new ImageIcon("life_blue.png");
+        return new ImageIcon("life_red.png");
     }
 
     @Override
     protected Round getNextRound() {
-        return new RedRound();
+        return new BlackRound();
     }
 
     @Override
     protected Spider getNewSpider() {
-        return new BlueSpider();
+        return new RedSpider();
     }
 }
