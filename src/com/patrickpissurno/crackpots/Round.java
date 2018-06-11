@@ -52,6 +52,9 @@ public abstract class Round {
 
         checkCollisions(game);
 
+        if(game.isGameOver())
+            return;
+
         spawnTimer -= 1;
         if(spawnTimer <= 0 && remainingEnemies > 0)
         {
@@ -121,6 +124,9 @@ public abstract class Round {
             life.setVisible(false);
             game.removeUI(life);
         }
+
+        if(lives.empty())
+            game.onGameOver();
     }
 
     public boolean isCreated(){

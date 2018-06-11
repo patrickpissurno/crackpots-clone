@@ -19,10 +19,18 @@ public class Game {
     private int score;
     private int roundCount;
     private JLabel scoreText;
+    private boolean gameOver;
+    private int gameOverTimer;
 
     public Game(JLayeredPane panel){
+        init(panel);
+    }
+
+    private void init(JLayeredPane panel){
         score = 0;
         roundCount = 0;
+        gameOver = false;
+        gameOverTimer = 360;
 
         this.panel = panel;
         gameObjects = new ArrayList<>();
@@ -58,11 +66,27 @@ public class Game {
         if(round != null && !round.isCreated())
             round.onCreate(this);
 
-        for(Pair<IGameObject, JLabel> obj : gameObjects)
+        for(Pair<IGameObject, JLabel> obj : gameObjects) {
+            if(gameOver && obj.getKey() instanceof Player)
+                continue;
+
             obj.getKey().onUpdate(this);
+        }
 
         if(round != null)
             round.onUpdate(this);
+
+        if(gameOver) {
+            if (gameOverTimer % 180 == 0)
+                scoreText.setText("Game Over");
+            else if (gameOverTimer % 90 == 0)
+                scoreText.setText(score + "");
+
+            gameOverTimer -= 1;
+        }
+
+        if(gameOverTimer <= 0)
+            restart();
     }
 
     public void onKeyPressed(KeyEvent e){
@@ -124,5 +148,18 @@ public class Game {
             roundCount += 1;
         }
         this.round = round;
+    }
+
+    public void onGameOver(){
+        gameOver = true;
+    }
+
+    public boolean isGameOver(){
+        return gameOver;
+    }
+
+    private void restart(){
+        panel.removeAll();
+        init(panel);
     }
 }
