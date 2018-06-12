@@ -3,7 +3,6 @@ package com.patrickpissurno.crackpots;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import java.io.File;
 
 public class SoundController {
     private static Clip[][] clips;

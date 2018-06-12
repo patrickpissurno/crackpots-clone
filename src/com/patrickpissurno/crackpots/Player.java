@@ -46,7 +46,7 @@ public class Player implements IGameObject, ICollider{
 
     @Override
     public void onKeyReleased(Game game, KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT)
+        if((e.getKeyCode() == KeyEvent.VK_LEFT && hspeed < 0) || (e.getKeyCode() == KeyEvent.VK_RIGHT && hspeed > 0))
             hspeed = 0;
     }
 

@@ -17,6 +17,7 @@ public class Main {
         JLayeredPane panel = new JLayeredPane();
         frame.setContentPane(panel);
         panel.setLayout(null);
+        panel.requestFocus();
 
         //Display the window
         frame.pack();
