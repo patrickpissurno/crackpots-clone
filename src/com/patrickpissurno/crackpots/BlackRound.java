@@ -6,7 +6,7 @@ public class BlackRound extends Round {
 
     @Override
     protected ImageIcon getLifeIcon() {
-        return new ImageIcon("life_black.png");
+        return new ImageIcon(Utils.getResource("life_black.png"));
     }
 
     @Override

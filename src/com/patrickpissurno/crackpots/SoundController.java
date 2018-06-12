@@ -51,14 +51,14 @@ public class SoundController {
 
     private static Clip LoadClip(String name){
         try {
-            final File soundFile = new File(name + ".wav");
-            final AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
+            final AudioInputStream audioIn = AudioSystem.getAudioInputStream(Utils.getResource(name + ".wav"));
             final Clip clip = AudioSystem.getClip();
             clip.open(audioIn);
             return clip;
         }
         catch(Exception ex)
         {
+            ex.printStackTrace();
             return null;
         }
     }

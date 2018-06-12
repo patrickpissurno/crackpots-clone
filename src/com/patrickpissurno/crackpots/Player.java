@@ -15,7 +15,7 @@ public class Player implements IGameObject, ICollider{
 
     @Override
     public JLabel onCreate(Game game) {
-        label = new JLabel(new ImageIcon("player.png"));
+        label = new JLabel(new ImageIcon(Utils.getResource("player.png")));
         x = 320 - width/2;
         y = 40;
         hspeed = 0;

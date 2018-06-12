@@ -5,7 +5,7 @@ import javax.swing.*;
 public class RedRound extends Round{
     @Override
     protected ImageIcon getLifeIcon() {
-        return new ImageIcon("life_red.png");
+        return new ImageIcon(Utils.getResource("life_red.png"));
     }
 
     @Override

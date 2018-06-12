@@ -5,7 +5,6 @@ import javafx.util.Pair;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 
 public class Game {
@@ -36,7 +35,7 @@ public class Game {
         gameObjects = new ArrayList<>();
         nextRound(new BlackRound());
 
-        final JLabel bg = new JLabel(new ImageIcon("bg.png"));
+        final JLabel bg = new JLabel(new ImageIcon(Utils.getResource("bg.png")));
         bg.setBounds(0, 0, 640, 420);
         panel.add(bg, new Integer(1));
 
@@ -47,7 +46,7 @@ public class Game {
 
 
         try {
-            final Font font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream("PressStart2P.ttf"));
+            final Font font = Font.createFont(Font.TRUETYPE_FONT, Utils.getResourceAsStream("PressStart2P.ttf"));
             scoreText.setFont(font.deriveFont(Font.PLAIN, 20));
         }
         catch(Exception ex) {

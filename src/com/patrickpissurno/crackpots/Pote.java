@@ -20,7 +20,7 @@ public class Pote implements IGameObject, ICollider{
 
     @Override
     public JLabel onCreate(Game game) {
-        label = new JLabel(new ImageIcon("pote.png"));
+        label = new JLabel(new ImageIcon(Utils.getResource("pote.png")));
 
         y = DEFAULT_Y;
         vspeed = 0;

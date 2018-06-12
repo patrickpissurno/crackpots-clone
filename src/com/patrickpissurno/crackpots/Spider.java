@@ -53,22 +53,22 @@ public abstract class Spider implements IGameObject, ICollider{
         fadeInProgress = false;
 
         wallSprites = new ImageIcon[]{
-                new ImageIcon(getSpritePrefix() + "_wall_1.png"),
-                new ImageIcon(getSpritePrefix() + "_wall_2.png"),
+                new ImageIcon(Utils.getResource(getSpritePrefix() + "_wall_1.png")),
+                new ImageIcon(Utils.getResource(getSpritePrefix() + "_wall_2.png")),
         };
         groundSprites = new ImageIcon[]{
-                new ImageIcon(getSpritePrefix() + "_ground_1.png"),
-                new ImageIcon(getSpritePrefix() + "_ground_2.png"),
+                new ImageIcon(Utils.getResource(getSpritePrefix() + "_ground_1.png")),
+                new ImageIcon(Utils.getResource(getSpritePrefix() + "_ground_2.png")),
         };
 
         if(dyingWallSprites == null){
             dyingWallSprites = new AlphaIcon[]{
-                    new AlphaIcon(new ImageIcon("spider_dying_wall_1.png"), 1f),
-                    new AlphaIcon(new ImageIcon("spider_dying_wall_2.png"), 1f),
+                    new AlphaIcon(new ImageIcon(Utils.getResource("spider_dying_wall_1.png")), 1f),
+                    new AlphaIcon(new ImageIcon(Utils.getResource("spider_dying_wall_2.png")), 1f),
             };
             dyingGroundSprites = new AlphaIcon[]{
-                    new AlphaIcon(new ImageIcon("spider_dying_ground_1.png"), 1f),
-                    new AlphaIcon(new ImageIcon("spider_dying_ground_2.png"), 1f),
+                    new AlphaIcon(new ImageIcon(Utils.getResource("spider_dying_ground_1.png")), 1f),
+                    new AlphaIcon(new ImageIcon(Utils.getResource("spider_dying_ground_2.png")), 1f),
             };
         }
 

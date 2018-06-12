@@ -1,0 +1,47 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="crackpots-clone:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/crackpots_clone_jar</output-path>
+    <root id="archive" name="crackpots-clone.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="crackpots-clone" />
+      <element id="file-copy" path="$PROJECT_DIR$/bg_1x.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/bg_full.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/bg.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/LICENSE_PressStart2P.txt" />
+      <element id="file-copy" path="$PROJECT_DIR$/life_black.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/life_blue.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/life_green.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/life_red.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/player_1x.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/player.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/pote.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/PressStart2P.ttf" />
+      <element id="file-copy" path="$PROJECT_DIR$/sound_loose_life.wav" />
+      <element id="file-copy" path="$PROJECT_DIR$/sound_pot_crack.wav" />
+      <element id="file-copy" path="$PROJECT_DIR$/sound_score_bonus.wav" />
+      <element id="file-copy" path="$PROJECT_DIR$/sound_spider_hit.wav" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_black_ground_1.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_black_ground_2.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_black_wall_1.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_black_wall_2.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_blue_ground_1.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_blue_ground_2.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_blue_wall_1.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_blue_wall_2.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_dying_ground_1.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_dying_ground_2.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_dying_wall_1.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_dying_wall_2.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_green_ground_1.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_green_ground_2.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_green_wall_1.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_green_wall_2.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_red_ground_1.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_red_ground_2.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_red_wall_1.png" />
+      <element id="file-copy" path="$PROJECT_DIR$/spider_red_wall_2.png" />
+    </root>
+  </artifact>
+</component>
