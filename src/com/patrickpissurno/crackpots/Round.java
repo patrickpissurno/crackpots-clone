@@ -12,6 +12,7 @@ public abstract class Round {
     private int remainingEnemies;
     private int spawnTimer;
     private int animateRoundEndTimer;
+    private boolean animatingRoundEnd;
 
     private List<Pote> potes;
     private List<Spider> spiders;
@@ -22,6 +23,7 @@ public abstract class Round {
         remainingEnemies = 12;
         spawnTimer = 60;
         animateRoundEndTimer = 60;
+        animatingRoundEnd = false;
 
         lives = new Stack<>();
         final ImageIcon lifeIcon = getLifeIcon();
@@ -74,6 +76,7 @@ public abstract class Round {
     }
 
     private void animateRoundEnd(Game game){
+        animatingRoundEnd = true;
         animateRoundEndTimer -= 1;
         if(animateRoundEndTimer <= 0 && !lives.empty())
         {
@@ -125,7 +128,7 @@ public abstract class Round {
             game.removeUI(life);
         }
 
-        if(lives.empty())
+        if(lives.empty() && !animatingRoundEnd)
             game.onGameOver();
     }
 
