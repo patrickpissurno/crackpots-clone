@@ -10,6 +10,15 @@ Java 8 + Swing.
 ## Apresentação
 Os slides usados na apresentação podem ser obtidos [neste link](https://docs.google.com/presentation/d/1LPzmywYGWJ9eLKClb0B7_DlWFg4oKnKqZXl4HA5ogQs/edit#slide=id.g3a330f784e_0_190).
 
+## Downloads
+Um build (.jar) está disponível para [download aqui](https://github.com/patrickpissurno/crackpots-clone/releases/download/untagged-5115b39cce2f388283af/crackpots-clone.jar).
+
+É necessário ter o [Java 8](https://java.com/pt_BR/download/) ou superior instalado no computador.
+
+Controles:
+- Setas do teclado movem o jogador
+- Espaço derruba os potes
+
 ## Direitos autorais originais
 Crackpots é um jogo para Atari 2600 desenvolvido por Dan Kitchen e publicado pela Activision em 1983.
 
